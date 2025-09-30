@@ -1,349 +1,596 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inducción HSEQ – Planta SINÚ-9</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-header img {
-  height: auto;
-  max-height: 60px;
-  max-width: 140px;
-  object-fit: contain;
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Borde muy fino y discreto */
-  border-radius: 10px; /* Esquinas más redondeadas */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra más tenue */
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Inducción HSEQ – Planta SINÚ-9</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      line-height: 1.6;
+
+      background-color: #f9f9f9;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    header {
+
+      background-color: #003366;
+
+      color: white;
+
+      padding: 10px 20px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+    }
+
+    header img {
+
+      height: auto;
+
+      max-height: 60px;
+
+      max-width: 140px;
+
+      object-fit: contain;
+
+    }
+
+    .container {
+
+      background-color: #fff;
+
+      padding: 40px;
+
+      max-width: 1000px;
+
+      margin: 20px auto;
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    }
+
+    section {
+
+      display: none;
+
+      opacity: 0;
+
+      transition: opacity 0.6s ease-in-out;
+
+    }
+
+    section.active {
+
+      display: block;
+
+      opacity: 1;
+
+    }
+
+    .nav-buttons {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-top: 20px;
+
+    }
+
+    button {
+
+  background-color: #006599;
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 16px;
+
+  padding: 12px 24px;
+
+  cursor: pointer;
+
+  border: none;
+
+  border-radius: 5px;
+
+  transition: background-color 0.3s ease;
+
 }
-    .container {
-      background-color: #fff;
-      padding: 40px;
-      max-width: 1000px;
-      margin: 20px auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    section {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-    }
-    section.active {
-      display: block;
-      opacity: 1;
-    }
-    .nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    button {
-  background-color: #006599;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 12px 24px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
+
 button:hover {
-  background-color: #004d73;
+
+  background-color: #004d73;
+
 }
+
 button:focus {
-  outline: 3px solid #ffa500;
+
+  outline: 3px solid #ffa500;
+
 }
 
-    button:hover {
-      background-color: #004d73;
-    }
-    h1, h2 {
-      color: #006599;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    a {
-      color: #007BFF;
-    }
-    img.qr {
-      width: 200px;
-      display: block;
-      margin: 20px auto;
-    }
-    .card {
-      background: #eef5f9;
-      border-left: 4px solid #007BFF;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-    }
-    details {
-      background-color: #eef5f9;
-      border-left: 4px solid #007BFF;
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    details summary {
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    details[open] {
-      background-color: #ddeefc;
-    }
-    .seccion-contenido {
-      background-color: #eef5f9;
-      border-left: 6px solid #007BFF;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      margin-bottom: 30px;
-    }
-    .imagen-seccion {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-   .imagen-seccion img {
-    max-width: 100%;
-    height: auto;
-    max-height: 350px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
 
-  .imagen-seccion img:hover {
-    transform: scale(1.02);
-  }
 
-  .img-superior-derecha {
-    float: right;
-    margin-left: 20px;
-    margin-top: -10px;
-    margin-bottom: 10px;
-    max-width: 90px;
-    z-index: 1;
-  }
+    button:hover {
 
-  .img-superior-derecha img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
+      background-color: #004d73;
 
-  section.has-personaje {
-    padding-right: 120px;
-  }
+    }
 
-  .grid-dos-columnas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
+    h1, h2 {
 
-  /* ✅ Responsivo */
-  @media screen and (max-width: 768px) {
-    .img-superior-derecha {
-      float: none;
-      display: block;
-      margin: 0 auto 20px auto;
-      text-align: center;
-    }
+      color: #006599;
 
-    }
-    section.has-personaje {
-      padding-right: 120px;
-    }
-    .grid-dos-columnas {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    @media screen and (max-width: 768px) {
-      .img-superior-derecha {
-        float: none;
-        display: block;
-        margin: 0 auto 20px auto;
-        text-align: center;
-      }
-      section.has-personaje {
-        padding-right: 0;
-      }
-      .grid-dos-columnas {
-        grid-template-columns: 1fr !important;
-      }
-    }
-    @media screen and (min-width: 1600px) {
-      .img-superior-derecha {
-        top: 130px;
-      }
-    }
+    }
+
+    ul {
+
+      padding-left: 20px;
+
+    }
+
+    a {
+
+      color: #007BFF;
+
+    }
+
+    img.qr {
+
+      width: 200px;
+
+      display: block;
+
+      margin: 20px auto;
+
+    }
+
+    .card {
+
+      background: #eef5f9;
+
+      border-left: 4px solid #007BFF;
+
+      padding: 15px;
+
+      margin-bottom: 15px;
+
+      border-radius: 6px;
+
+    }
+
+    details {
+
+      background-color: #eef5f9;
+
+      border-left: 4px solid #007BFF;
+
+      padding: 10px 15px;
+
+      margin-bottom: 10px;
+
+      border-radius: 6px;
+
+      cursor: pointer;
+
+    }
+
+    details summary {
+
+      font-weight: bold;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+    }
+
+    details[open] {
+
+      background-color: #ddeefc;
+
+    }
+
+    .seccion-contenido {
+
+      background-color: #eef5f9;
+
+      border-left: 6px solid #007BFF;
+
+      padding: 30px;
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+
+      margin-bottom: 30px;
+
+    }
+
+    .imagen-seccion {
+
+      text-align: center;
+
+      margin-bottom: 20px;
+
+    }
+
+   .imagen-seccion img {
+
+    max-width: 100%;
+
+    height: auto;
+
+    max-height: 350px;
+
+    border-radius: 12px;
+
+    border: 1px solid #ccc;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+
+  }
+
+
+
+  .imagen-seccion img:hover {
+
+    transform: scale(1.02);
+
+  }
+
+
+
+  .img-superior-derecha {
+
+    float: right;
+
+    margin-left: 20px;
+
+    margin-top: -10px;
+
+    margin-bottom: 10px;
+
+    max-width: 90px;
+
+    z-index: 1;
+
+  }
+
+
+
+  .img-superior-derecha img {
+
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+
+  }
+
+
+
+  section.has-personaje {
+
+    padding-right: 120px;
+
+  }
+
+
+
+  .grid-dos-columnas {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+  }
+
+
+
+  /* ✅ Responsivo */
+
+  @media screen and (max-width: 768px) {
+
+    .img-superior-derecha {
+
+      float: none;
+
+      display: block;
+
+      margin: 0 auto 20px auto;
+
+      text-align: center;
+
+    }
+
+
+
+    }
+
+    section.has-personaje {
+
+      padding-right: 120px;
+
+    }
+
+    .grid-dos-columnas {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 20px;
+
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .img-superior-derecha {
+
+        float: none;
+
+        display: block;
+
+        margin: 0 auto 20px auto;
+
+        text-align: center;
+
+      }
+
+      section.has-personaje {
+
+        padding-right: 0;
+
+      }
+
+      .grid-dos-columnas {
+
+        grid-template-columns: 1fr !important;
+
+      }
+
+    }
+
+    @media screen and (min-width: 1600px) {
+
+      .img-superior-derecha {
+
+        top: 130px;
+
+      }
+
+    }
+
 /* ✅ Sección 6 y 7: Ajustar UL dentro de .card en móviles */
+
 @media screen and (max-width: 768px) {
-  .card ul {
-    padding-left: 20px;
-    font-size: 15px;
-  }
 
-  .card li {
-    margin-bottom: 10px;
-  }
+  .card ul {
 
-  .card p {
-    font-size: 15px;
-  }
+    padding-left: 20px;
+
+    font-size: 15px;
+
+  }
+
+
+
+  .card li {
+
+    margin-bottom: 10px;
+
+  }
+
+
+
+  .card p {
+
+    font-size: 15px;
+
+  }
+
 }
+
+
 
 /* ✅ Sección 7: Mejorar visualización de <details> en móviles */
+
 details summary {
-  font-size: 16px;
+
+  font-size: 16px;
+
 }
+
+
 
 details p,
+
 details ul {
-  font-size: 15px;
+
+  font-size: 15px;
+
 }
+
+
 
 @media screen and (max-width: 768px) {
-  details {
-    padding: 8px 12px;
-  }
 
-  details p,
-  details ul {
-    font-size: 14px;
-  }
+  details {
 
-  details ul {
-    padding-left: 18px;
-  }
+    padding: 8px 12px;
 
-  details summary {
-    font-size: 15px;
-  }
+  }
+
+
+
+  details p,
+
+  details ul {
+
+    font-size: 14px;
+
+  }
+
+
+
+  details ul {
+
+    padding-left: 18px;
+
+  }
+
+
+
+  details summary {
+
+    font-size: 15px;
+
+  }
+
 }
+
+
 
 /* ✅ Sección 12: Convertir .vial-grid en una sola columna en móvil */
+
 @media screen and (max-width: 768px) {
-  .vial-grid {
-    grid-template-columns: 1fr !important;
-    gap: 15px;
-  }
 
-  .vial-grid .card h4 {
-    font-size: 16px;
-  }
+  .vial-grid {
 
-  .vial-grid .card p {
-    font-size: 14px;
-  }
-}
-    /* --- Estilos para el Video Introductorio --- */
-.video-intro-texto {
-  text-align: center;
-  max-width: 800px;
-  margin: 20px auto 0 auto;
-}
+    grid-template-columns: 1fr !important;
 
-.video-intro-texto p {
-  font-size: 16px;
-  color: #333;
-}
+    gap: 15px;
 
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* Proporción 16:9 para video */
-  height: 0;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+
+
+  .vial-grid .card h4 {
+
+    font-size: 16px;
+
+  }
+
+
+
+  .vial-grid .card p {
+
+    font-size: 14px;
+
+  }
+
 }
 
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-  </style>
+  </style>
+
 </head>
+
 <body>
+
 <header>
-  <div><strong>Inducción HSEQ visitantes PBI</strong></div>
-  <img src="https://i.postimg.cc/gcX7rNgd/Logo-PBI.png" alt="Logo PBI">
+
+  <div><strong>Inducción HSEQ visitantes PBI</strong></div>
+
+  <img src="https://i.postimg.cc/gcX7rNgd/Logo-PBI.png" alt="Logo PBI">
+
 </header>
+
 <div id="barraProgreso" style="height: 6px; background-color: #007BFF; width: 0%; position: fixed; top: 0; left: 0; z-index: 999; transition: width 0.4s;"></div>
 
+
+
 <div class="container">
-  <section class="active">
-    <div class="seccion-contenido">
-      <p style="font-size: 16px; color: #333; margin-top: 15px;">
-      Esta inducción está diseñada para brindarte la información clave que necesitas para actuar de forma <strong>segura</strong>, <strong>responsable</strong> y en coherencia con nuestra <strong>cultura HSEQ</strong>.
-    </p>
-    <p style="font-size: 16px; color: #333;">
-      📌 La inducción es <strong>obligatoria</strong>. Su aprobación es requisito previo para cualquier ingreso o actividad dentro de nuestras instalaciones.
-    </p>
-    <p style="font-size: 16px; color: #007BFF; font-weight: bold; text-align: center; margin-top: 25px;">
-      ¡Gracias por sumarte a un entorno más seguro, eficiente y sostenible! 🌱
-    </p>
-  </div>
+
+  <section class="active">
+
+    <div class="seccion-contenido">
+
+      <p style="font-size: 16px; color: #333; margin-top: 15px;">
+
+      Esta inducción está diseñada para brindarte la información clave que necesitas para actuar de forma <strong>segura</strong>, <strong>responsable</strong> y en coherencia con nuestra <strong>cultura HSEQ</strong>.
+
+    </p>
+
+    <p style="font-size: 16px; color: #333;">
+
+      📌 La inducción es <strong>obligatoria</strong>. Su aprobación es requisito previo para cualquier ingreso o actividad dentro de nuestras instalaciones.
+
+    </p>
+
+    <p style="font-size: 16px; color: #007BFF; font-weight: bold; text-align: center; margin-top: 25px;">
+
+      ¡Gracias por sumarte a un entorno más seguro, eficiente y sostenible! 🌱
+
+    </p>
+
+  </div>
+
 </section>
+
 <section>
-  <div class="img-superior-derecha">
-    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
-  </div>
 
-  <h2>2. OBJETIVO DE LA INDUCCIÓN</h2>
+  <div class="img-superior-derecha">
 
-  <div class="video-intro-texto">
-    <p>
-      Te invitamos a ver el siguiente video introductorio que refuerza el propósito de esta inducción, 
-      resaltando nuestro compromiso con la Seguridad, la Salud, el Ambiente y la Calidad en todos los proyectos.
-    </p>
-  </div>
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
 
-  <div class="video-container">
-    <iframe 
-      src="https://streamable.com/e/uq5idk?" 
-      allow="fullscreen" 
-      allowfullscreen>
-    </iframe>
-  </div>
+  </div>
 
-  <p>
-    Brindar a todo visitante o contratista las herramientas y conocimientos esenciales en materia de Seguridad, 
-    Salud, Ambiente y Calidad (HSEQ), garantizando la integridad de las personas, el entorno y la continuidad operativa.
-  </p>
 
-  <div class="imagen-seccion">
-    <img src="https://i.postimg.cc/Kjvxk4fd/Whats-App-Image-2025-03-26-at-7-49-28-AM.png" alt="Equipo de trabajo en planta">
-  </div>
+
+  <h2>2. OBJETIVO DE LA INDUCCIÓN</h2>
+
+
+
+  <div class="imagen-seccion">
+
+    <img src="https://i.postimg.cc/Kjvxk4fd/Whats-App-Image-2025-03-26-at-7-49-28-AM.png" alt="Descripción de la imagen">
+
+  </div>
+
+
+
+  <p>Brindar a todo visitante o contratista las herramientas y conocimientos esenciales en materia de Seguridad, Salud, Ambiente y Calidad (HSEQ), garantizando la integridad de las personas, el entorno y la continuidad operativa.</p>
+
 </section>
+
+  <section>
+
+  <div class="img-superior-derecha">
+
+    <img src="https://i.postimg.cc/CLSFNhyN/LOGO-PBI-CASCO-BLANCO.png" alt="Personaje PBI con EPP">
+
+  </div>
   <h2>3. POLÍTICAS CORPORATIVAS</h2>
   <p>Estas son las políticas esenciales que rigen nuestro actuar diario en PBI:</p>
 
